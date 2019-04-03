@@ -15,6 +15,9 @@ export default {
 <style lang="stylus" scoped>
   .header
     line-height:1.26rem
+    z-index: 5
+    position:fixed
+    width :100%
     display :flex
     background :#00bcd4
     color:#fff

@@ -1,55 +1,53 @@
 <template>
-      <div class="message-body">
-        <div class="user" v-if="isLeft">
+  <div>
+        <div class="user" v-if="message.isLeft">
           <div class="info">
-            <div class="name">wyz</div>
+            <div class="name">{{message.name}}</div>
             <div class="avatar">
-              <img class="avatar-img" src="https://bpic.588ku.com/original_origin_min_pic/18/11/26/b39b42668b8137bdd18fe49d7ffe3a3e.jpg">
+              <img class="avatar-img" :src="message.avatar">
             </div>
           </div>
           <div class="message-wrapper">
             <div class="item-wrapper">
               <div class="wrapper-item">
-                wyz最喜欢zmm啦~！
+                {{message.text}}
               </div>
             </div>
           </div>
         </div>
-        <div class="user" v-if="!isLeft">
+        <div class="user" v-if="!message.isLeft">
           <div class="message-wrapper">
             <div class="item-wrapper1">
               <div class="wrapper-item">
-                wyz最喜欢zmm啦~！
+                {{message.text}}
               </div>
             </div>
           </div>
           <div class="info">
-            <div class="name">wyz</div>
+            <div class="name1">{{message.name}}</div>
             <div class="avatar1">
               <img class="avatar-img" src="https://bpic.588ku.com/original_origin_min_pic/18/11/26/b39b42668b8137bdd18fe49d7ffe3a3e.jpg">
             </div>
           </div>
         </div>
-      </div>
+  </div>
 </template>
 
 <script>
 export default {
   name: 'HomeMessage',
+  props: {
+    message: Object
+  },
   data () {
     return {
-      isLeft: false
     }
   }
 }
 </script>
 
 <style lang="stylus" scoped>
-.message-body
-  align-items :center
-  background :#eee
-  width :100%
-  padding-bottom :90%
+
   .user
     display :flex
     overflow:hidden
@@ -61,6 +59,10 @@ export default {
       flex :1
       .name
         padding-bottom :.1rem
+        color :#999
+      .name1
+        padding-bottom :.1rem
+        margin-left :.5rem
         color :#999
       .avatar
         float :left
