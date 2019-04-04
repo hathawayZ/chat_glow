@@ -1,9 +1,10 @@
 <template>
-    <div>
+    <div class="home">
       <home-header></home-header>
       <div class="message-body">
        <home-message v-for="(item,index) in dataList" :key="index" :message="item"></home-message>
       </div>
+      <home-input></home-input>
     </div>
 </template>
 
@@ -11,10 +12,12 @@
 import HomeHeader from './components/header'
 import HomeMessage from './components/message'
 import axios from 'axios'
+import HomeInput from './components/input'
 
 export default {
   name: 'home',
   components: {
+    HomeInput,
     HomeMessage,
     HomeHeader},
   data () {
@@ -90,9 +93,16 @@ export default {
 </script>
 
 <style lang="stylus" scoped>
-  .message-body
-    padding-top : .92rem
-    align-items :center
+  .home
     background :#eee
-    width :100%
+    position: absolute
+    bottom :0
+    top:0
+    left:0
+    right :0
+    .message-body
+      padding-bottom :1rem
+      padding-top : .92rem
+      align-items :center
+      width :100%
 </style>

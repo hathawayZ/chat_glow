@@ -6,9 +6,12 @@ import router from './router'
 import fastClick from 'fastclick'
 import './assets/styles/reset.css'
 import './assets/styles/border.css'
+import ElementUI from 'element-ui'
+import 'element-ui/lib/theme-chalk/index.css'
 
 Vue.config.productionTip = false
 fastClick.attach(document.body)
+Vue.use(ElementUI)
 
 /* eslint-disable no-new */
 new Vue({
