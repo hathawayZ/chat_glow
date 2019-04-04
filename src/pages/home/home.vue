@@ -28,7 +28,7 @@ export default {
     },
     getHomeInfoSuc (res) {
       const data = res.data
-      // console.log(data)
+      console.log(data)
       for (let x in data) {
         this.dataList.push(data[x])
       }
@@ -38,8 +38,19 @@ export default {
         } else {
           ele.isLeft = true
         }
+        ele.time = this.stampToDate(ele.time)
       })
-      console.log(this.dataList)
+      // console.log(this.dataList)
+    },
+    stampToDate (res) {
+      const date = new Date(parseInt(res * 1000))
+      // console.log(date)
+      const year = date.getFullYear()
+      const month = (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1) : date.getMonth() + 1)
+      const day = date.getDate()
+      const hour = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
+      const minute = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
+      return year + '-' + month + '-' + day + ' ' + hour + ':' + minute
     }
   },
   mounted () {
