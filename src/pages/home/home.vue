@@ -101,6 +101,7 @@ export default {
     left:0
     right :0
     .message-body
+      background :#eee
       padding-bottom :1rem
       padding-top : .92rem
       align-items :center
