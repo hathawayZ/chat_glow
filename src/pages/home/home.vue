@@ -32,6 +32,8 @@ export default {
       for (let x in data) {
         this.dataList.push(data[x])
       }
+      let lastTime
+      let lastName
       this.dataList.forEach((ele) => {
         if (ele.name === 'Me') {
           ele.isLeft = false
@@ -39,8 +41,36 @@ export default {
           ele.isLeft = true
         }
         ele.time = this.stampToDate(ele.time)
+        if (lastTime) {
+          ele.lastTime = lastTime
+        }
+        lastTime = ele.time
+        if (ele.lastTime) {
+          const timeShow = this.ifTimeShow(ele.lastTime, ele.time)
+          ele.timeShow = timeShow
+        } else {
+          ele.timeShow = true
+        }
+        if (lastName) {
+          ele.lastName = lastName
+        }
+        lastName = ele.name
+        if (ele.lastName) {
+          if (ele.lastName === ele.name) {
+            ele.infoShow = false
+          } else ele.infoShow = true
+        } else {
+          ele.infoShow = true
+        }
       })
-      // console.log(this.dataList)
+      console.log(this.dataList)
+    },
+    ifTimeShow (sta, en) {
+      let start = new Date(sta)
+      let end = new Date(en)
+      let s = end.getTime() - start.getTime()
+      let ss = s / 60000
+      if (ss > 5) { return true } else { return false }
     },
     stampToDate (res) {
       const date = new Date(parseInt(res * 1000))
