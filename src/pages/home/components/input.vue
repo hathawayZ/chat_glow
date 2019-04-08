@@ -8,7 +8,7 @@
         clearable
         class="input-text">
       </el-input>
-      <el-button type="primary" class="send" size ='medium'>发送</el-button>
+      <el-button type="primary" class="send" size ='medium' @click="sendMsg">发送</el-button>
     </div>
 </template>
 
@@ -18,6 +18,12 @@ export default {
   data () {
     return {
       text: ''
+    }
+  },
+  methods: {
+    sendMsg () {
+      this.$emit('sendmsg', this.text)
+      this.text = ''
     }
   }
 }

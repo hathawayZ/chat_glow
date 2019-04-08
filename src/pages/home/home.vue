@@ -4,7 +4,7 @@
       <div class="message-body">
        <home-message v-for="(item,index) in dataList" :key="index" :message="item"></home-message>
       </div>
-      <home-input></home-input>
+      <home-input v-on:sendmsg="add_msg"></home-input>
     </div>
 </template>
 
@@ -84,6 +84,21 @@ export default {
       const hour = date.getHours() < 10 ? '0' + date.getHours() : date.getHours()
       const minute = date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()
       return year + '-' + month + '-' + day + ' ' + hour + ':' + minute
+    },
+    add_msg (text) {
+      console.log(text)
+      let curts = Math.floor(Date.now() / 1000)
+      let lastMsg = this.dataList[this.dataList.length - 1]
+      let newMsg = {}
+      newMsg['timeShow'] = true
+      newMsg['isLeft'] = false
+      newMsg['time'] = this.stampToDate(curts)
+      newMsg['name'] = 'Me'
+      newMsg['infoShow'] = !(lastMsg.name === 'Me')
+      newMsg['timeShow'] = this.ifTimeShow(lastMsg.time, newMsg.time)
+      newMsg['ts'] = curts
+      newMsg['text'] = text
+      this.dataList.push(newMsg)
     }
   },
   mounted () {
